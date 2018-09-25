@@ -13,7 +13,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="200dp"/>
+        />
 
     <LinearLayout
         android:gravity="center"
@@ -23,31 +23,47 @@
         android:background="#A0FFFFFF" >
 
         <EditText
-            android:layout_marginTop="15dp"
-            android:id="@+id/editText2"
+            android:id="@+id/start"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="START POINT"
+            android:inputType="textPersonName" />
 
         <EditText
-            android:layout_marginTop="15dp"
-            android:id="@+id/editText3"
+            android:id="@+id/end"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="END POINT"
+            android:inputType="textPersonName" />
 
-        <EditText
-            android:layout_marginTop="15dp"
-            android:id="@+id/editText4"
+        <LinearLayout
+            android:layout_margin="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/taken"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="TIME TO GET READY"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="TIME "
+                android:inputType="textPersonName" />
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>
