@@ -52,7 +52,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        
     }
 
 
@@ -78,7 +77,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onLocationChanged(Location location) {
                 LatLng jiit = new LatLng(location.getLatitude(),location.getLongitude());
 
-                mMap.addMarker(new MarkerOptions().position(jiit).title("END POINT"));
+                mMap.addMarker(new MarkerOptions().position(jiit).title("END POPINT"));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(jiit,15));
             }
 
@@ -104,14 +103,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
             else{
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+                //Location xlocation=locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-               /* Location xlocation=locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-                LatLng start = new LatLng(xlocation.getLatitude(),xlocation.getLongitude());
+                LatLng start = new LatLng(28.6296153,77.367837);
                 mMap.clear();
-
                 mMap.addMarker(new MarkerOptions().position(start).title("START POPINT"));
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(start,15));*/
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(start,15));
             }
 
 
