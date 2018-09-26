@@ -29,6 +29,8 @@ import android.support.v4.content.ContextCompat;
 
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -55,7 +57,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     LocationManager locationManager;
 
     LocationListener locationListener;
-
 
     @Override
 
@@ -93,11 +94,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Geocoder geocoder=new Geocoder(getApplicationContext());
                     try {
                         List<Address> addresses =geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
-                        String str = addresses.get(0).getLocality()+" , ";
+                        String str = addresses.get(0).getSubLocality()+",";
+                        str+=addresses.get(0).getLocality()+ ",";
                         str+=addresses.get(0).getCountryName();
                         mMap.addMarker(new MarkerOptions().position(start).title(str));
-
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(start,17));
+                        TextView starting=findViewById(R.id.start);
+                        starting.setText(str);
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -134,8 +138,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         String str = addresses.get(0).getLocality()+" , ";
                         str+=addresses.get(0).getCountryName();
                         mMap.addMarker(new MarkerOptions().position(start).title(str));
-
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(start,17));
+                        TextView starting=findViewById(R.id.start);
+                        starting.setText(str);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -157,6 +162,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             });
         }
+
+
+
     }
 
 
