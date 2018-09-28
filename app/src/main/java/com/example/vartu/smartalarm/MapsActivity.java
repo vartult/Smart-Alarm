@@ -31,6 +31,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -85,14 +86,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        if(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
-            locationManager.requestLocationUpdates(locationManager.NETWORK_PROVIDER, 0, 0, new LocationListener() {
+        if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+            Toast.makeText(getApplicationContext(), "NETWORK0", Toast.LENGTH_SHORT).show();
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
                 @Override
                 public void onLocationChanged(Location location) {
                     mMap.clear();
                     LatLng start=new LatLng(location.getLatitude(),location.getLongitude());
+                    Toast.makeText(getApplicationContext(), "NETWORK1", Toast.LENGTH_SHORT).show();
                     Geocoder geocoder=new Geocoder(getApplicationContext());
                     try {
+
                         List<Address> addresses =geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
                         String str = addresses.get(0).getSubLocality()+",";
                         str+=addresses.get(0).getLocality()+ ",";
@@ -106,44 +110,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         e.printStackTrace();
                     }
 
+                    Toast.makeText(getApplicationContext(), "NETWORK", Toast.LENGTH_SHORT);
 
-                }
-
-                @Override
-                public void onStatusChanged(String provider, int status, Bundle extras) {
-
-                }
-
-                @Override
-                public void onProviderEnabled(String provider) {
-
-                }
-
-                @Override
-                public void onProviderDisabled(String provider) {
-
-                }
-            });
-        }
-        else if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
-        {
-            locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
-                @Override
-                public void onLocationChanged(Location location) {
-                    mMap.clear();
-                    LatLng start=new LatLng(location.getLatitude(),location.getLongitude());
-                    Geocoder geocoder=new Geocoder(getApplicationContext());
-                    try {
-                        List<Address> addresses =geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
-                        String str = addresses.get(0).getLocality()+" , ";
-                        str+=addresses.get(0).getCountryName();
-                        mMap.addMarker(new MarkerOptions().position(start).title(str));
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(start,17));
-                        TextView starting=findViewById(R.id.start);
-                        starting.setText(str);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                 }
 
                 @Override
@@ -167,26 +135,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-
-
-
-
-
-
     @Override
 
     public void onMapReady(GoogleMap googleMap) {
 
         mMap = googleMap;
-
-        mMap.clear();
-
-
-
-
-
-
-
 
 
     }
