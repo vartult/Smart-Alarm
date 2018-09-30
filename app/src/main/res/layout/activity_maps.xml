@@ -46,20 +46,13 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TIME REQ" />
-
             <EditText
                 android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="TIME"
+                android:hint="TIME REQ(in Min)"
                 android:inputType="textPersonName" />
         </LinearLayout>
 

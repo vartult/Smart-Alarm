@@ -35,6 +35,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -82,15 +83,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         //ALARM SET PROCCESS
-        Button submit=findViewById(R.id.submit);
+        final EditText timr=(EditText) findViewById(R.id.time);
+        Button submit=(Button) findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int time=Integer.parseInt();
-                        Intent i= new intent(MapsActivity.this,Alarm.class);
+                int alarmtime= Integer.parseInt(timr.getText().toString())*60;
+                Intent i= new Intent(MapsActivity.this,Alarm.class);
                 AlarmManager am=(AlarmManager)getSystemService(ALARM_SERVICE);
                 PendingIntent pi=PendingIntent.getBroadcast(getApplicationContext(),0,i,0);
-                am.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+time*1000,pi);
+                am.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+alarmtime*1000,pi);
 
             }
         });
