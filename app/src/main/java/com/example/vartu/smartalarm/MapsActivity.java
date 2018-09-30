@@ -86,9 +86,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+        if(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
             Toast.makeText(getApplicationContext(), "NETWORK0", Toast.LENGTH_SHORT).show();
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, new LocationListener() {
                 @Override
                 public void onLocationChanged(Location location) {
                     mMap.clear();
